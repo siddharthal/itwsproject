@@ -1,0 +1,81 @@
+{{extend 'layout.html'}}
+<style>
+    .cl{
+        color:Brown;
+    }
+    body{
+        font-size:1.5em;
+    }
+.recip{
+    padding:1%;
+    margin:1%;
+    background-color:white;
+    opacity:none;
+  border-radius:1vw;
+    height:14vw;
+}
+    .fix{
+        position:fixed;
+        margin-left:80%;
+    }
+    .inl{
+        display:inline-block;
+         width:40%;
+        margin-bottom:1%;
+    }
+    .ima{
+        float:left;
+        width:15vw;
+        height:10vw;
+        margin:1vw;
+        border-radius:100%;
+    }
+    .wh{
+        display:inline-block;
+        background-color:white;
+        padding:0.5%;
+        width:6.6%;
+        margin:1%;
+        color:blue;
+    }
+    .titl{
+        height:15vw;
+        width:94vw;
+        margin:none;
+    }
+    .he{
+        position:absolute;
+        margin-left:40%;
+        margin-top:5vw;
+    }
+</style>
+ <h1 class="he">The Recipes</h1>
+<img class="titl" src="{{=URL('static','images/title.jpg')}}" alt="image"/><div class="bod">
+<div class="wh">
+{{=(A('<-previous', _href=URL('previous')))}}
+    </div>
+    <div class="wh">
+{{=(A('next->', _href=URL('next')))}}
+    </div>
+    {{for recipe in recipes:}}
+    <div class="recip">
+      <img class="ima" src="{{=URL('download',args=recipe.image)}}" alt="image"/>
+    <h2>
+        {{=(A(recipe.title, _href=URL('show', args=recipe.id)))}}</h2>
+    <p>
+        <span class="cl">Created on </span><span style="color:blue">{{=(recipe.created_on)}}</span> by <span class="cl">{{=recipe.created_by.first_name}}</span>, {{=recipe.votes}} <span class="cl">likes</span>
+    </p>
+           <p> {{=(recipe.summary)}}</p>
+    <p>
+        <span class="cl">Serves:  </span>{{=(recipe.serves)}} <span class="cl">Time:  </span>{{=(recipe.preparation_time)}} 
+</p>
+    </div>
+
+     {{pass}}
+<div class="wh">
+{{=(A('<-previous', _href=URL('previous')))}}
+    </div>
+    <div class="wh">
+{{=(A('next->', _href=URL('next')))}}
+    </div>
+</div>

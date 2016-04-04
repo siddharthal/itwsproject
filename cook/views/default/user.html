@@ -1,0 +1,64 @@
+{{extend 'layout.html'}}
+<style>
+.back{
+    border-radius:1vw;
+    background-color:white;
+    margin-right:48vw;
+    padding:1vw;
+    opacity:0.85;
+    margin-top:7vw;
+}
+    nav div div div{
+        visibility:hidden;
+    }
+ h1 {
+	margin: 1em 0 0.5em 0;
+	font-weight: 100;
+ 
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 3em;
+	line-height: 54px;
+
+}
+
+
+
+</style>
+<div class="back">
+    
+<h1>
+   <img style="height:7vw" src="{{=URL('static','images/logo.jpg')}}" alt=Cook/></span>
+</h1>
+<h2>
+{{=T('Sign Up') if request.args(0) == 'register' else T('Log In') if request.args(0) == 'login' else T(request.args(0).replace('_',' ').title())}}
+</h2>
+
+<div class="container">
+    <div class="row">
+        <div id="web2py_user_form" class="col-lg-6">
+        {{
+        if request.args(0)=='login':
+            if not 'register' in auth.settings.actions_disabled:
+                form.add_button(T('Sign Up'),URL(args='register', vars={'_next': request.vars._next} if request.vars._next else None),_class='btn btn-default')
+            pass
+            if not 'request_reset_password' in auth.settings.actions_disabled:
+                form.add_button(T('Lost Password'),URL(args='request_reset_password'),_class='btn btn-default')
+            pass
+        pass
+        =form
+        }}
+        </div>
+    </div>
+</div>
+</div>
+
+{{block page_js}}
+<script>
+    jQuery("#web2py_user_form input:visible:enabled:first").focus();
+{{if request.args(0)=='register':}}
+    web2py_validate_entropy(jQuery('#auth_user_password'),100);
+{{elif request.args(0)=='change_password':}}
+    web2py_validate_entropy(jQuery('#no_table_new_password'),100);
+{{pass}}
+</script>
+{{end page_js}}

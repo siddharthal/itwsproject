@@ -1,0 +1,15 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'layout.html'}}
+ <h1>The recipes!!</h1>
+<table>
+{{for recipe in recipes:}}
+    <tr>
+     {{=TD(A(recipe.title, _href=URL('show', args=recipe.id)))}}
+     {{=TD(recipe.summary)}}
+        {{=TD(<img src="{{=recipe.image}}" alt="Nothing"/>)}}
+    </tr>
+     {{pass}}
+</table>
+  {{=A('add recipe', _href=URL('create'))}}
+<br>
+  {{=A('my recipes', _href=URL('mrecis'))}}

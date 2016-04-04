@@ -1,0 +1,50 @@
+{{extend 'layout.html'}}
+<style>
+    body{
+        font-size:1.5em;
+    }
+.recip{
+    padding:1%;
+    margin:1%;
+    background-color:white;
+    opacity:1;
+  border-radius:1vw;
+    height:14vw;
+}
+    .fix{
+        position:fixed;
+        margin-left:80%;
+    }
+    .inl{
+        display:inline-block;
+         width:40%;
+        margin-bottom:1%;
+    }
+    .ima{
+        float:left;
+        width:15vw;
+        height:10vw;
+        margin:1vw;
+        border-radius:100%;
+    }
+    
+</style>
+{{=(A('next', _href=URL('next')))}}
+
+</div>
+ <h1>The recipes!!</h1>
+<p>
+    Click on the recipe title to view a recipe
+</p>
+<div>
+{{for recipe in recipes:}}
+    <div class="recip">
+        
+             <img class="ima" src="{{=URL('download', args=recipe.image)}}" alt="image"/></td>
+    <h2>
+        {{=(A(recipe.title, _href=URL('show', args=recipe.id)))}}</h2>
+           <p> {{=(recipe.summary)}}</p>
+    </div>
+
+     {{pass}}
+</div>
