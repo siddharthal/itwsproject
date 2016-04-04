@@ -1,0 +1,44 @@
+{{extend 'layout.html'}}
+<center>
+    <body>
+       
+    
+        <h1>{{=T( request.args(0).replace('_',' ').capitalize() )}}</h1><br></br>
+<div id="web2py_user_form">
+  {{=form}}
+  {{if request.args(0)=='login':}}
+    {{if not 'register' in auth.settings.actions_disabled:}}
+      <br/>
+    {{pass}}
+    {{if not 'request_reset_password' in auth.settings.actions_disabled:}}
+      <br/>
+      
+        <a href="{{=URL(args='request_reset_password')}}"><div class="a">
+            
+            <button>
+                lost password</button></div></a>
+    {{pass}}
+  {{pass}}
+</div>
+    
+</body>
+</center>
+<style>
+body {
+    
+    background-image:url('/COOKING_RECIPES/static/images/login.jpg');
+    background-repeat:no-repeat;
+    text-align:center;
+    background-position:center;
+}
+    .a{
+        padding-left:100px;
+        padding-top:0px;
+    }
+    h1 {
+        color:green;
+    }
+    .abc{
+        float:right;
+    }
+</style>

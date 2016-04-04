@@ -1,0 +1,30 @@
+{{extend 'layout.html'}}
+<h2>
+    Edit Recipe
+</h2>
+<body >
+ <form action="http://127.0.0.1:8000/welcome/default/myrecipe">
+         <button class="button2">BACK</button>
+</form> 
+<style>
+.button1 {
+    background-color:lightblue; 
+    border: 1px solid green;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+}
+.button1:hover {
+    background-color:grey;
+}
+    h2{
+        color:brown;
+        text-align:center;
+    }
+    </style>
+</body>

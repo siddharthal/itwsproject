@@ -1,0 +1,82 @@
+{{extend 'layout.html'}}
+<h2>
+     Recipes
+</h2>
+<body style="background-color:#F0FFF0">
+    
+<style>
+    body {
+        background-repeat:no-repeat;
+        
+    }
+
+.ab{
+    color:black;
+    font-size:20px;
+    float:left;
+    
+}
+    .abc{
+    color:black;
+    font-size:20px;
+    float:right;
+        
+}
+  h2 {
+      color:brown;
+      text-align:center;
+  }  
+th {
+    background-color:black;
+    padding: 5px;
+    text-align:center;
+    font-size:25px;
+    color:white
+}
+    td {
+    padding: 5px;
+    text-align:center;
+    font-size:25px;
+    color:black;
+}
+    
+    tr:nth-child(odd) {
+    background-color:white;
+    }
+    tr:nth-child(even) {
+        background-color:#E0E0E0;
+    }
+    .v {
+        text-decoration:none;
+        display:block;
+    }
+    
+</style>
+    <table  style="width:100%">
+        <tr>
+    <th>Title</th>
+    <th>Image</th>
+    <th>Description</th>
+  </tr>
+{{for image in rows:}}
+        <tr>
+        <td><div class="v">
+            
+            {{=(A(image.title, _href=URL("show", args=image.id)))}}</div></td>
+    <td><img width="100px"
+             src="{{=URL('download', args=image.file)}}" /></td>
+        <td>{{=image.body}}</td>
+        </tr>
+    {{pass}}
+    </table>
+    <div class="ab">
+    {{if page>0:}}
+        {{=A('PREVIOUS',_href=URL(args=(page-1)))}}
+    </div>
+        {{pass}}
+    <div class="abc">
+    {{if len(rows)>=10:}}
+        {{=A('NEXT',_href=URL(args=(page+1)))}}
+    {{pass}}
+    </div>
+</body>

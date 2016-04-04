@@ -1,0 +1,59 @@
+{{extend 'layout.html'}}
+<html>
+<style>
+h1 {
+    padding-left:580px;
+}
+</style>
+<body style="background-color:white;">
+    
+       <center>
+<img width="750px"
+src="{{=URL('download', args=image.file)}}" />
+    </center>
+<h1 style="background-color:#E0E0E0;">
+    Image:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{=image.title}}</h1>
+    <br/>
+<h1 style="background-color:#E0E0E0;">
+    Author:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{=image.author}}
+</h1>
+    <br/>
+<h1 style="background-color:#E0E0E0;">
+    Date Of Upload:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{=image.created_on}}
+</h1>
+    <br/>
+        <h1 style="background-color:#E0E0E0;">
+Description: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{=image.body}}
+</h1>
+    <center><table>
+    
+    <tr data-id="{{=image.id}}">
+ <td><img src= "/Amazing/static/images/unlike.jpg" style="width:50px;height:50px;"/ data-direction="down">
+            </td><td><span class='votes'>{{=image.votes}}</span></td><td><img src="/Amazing/static/images/like.jpg" style="width:50px;height:50px;"/ data-direction="up">
+            </td></tr>
+ 
+    
+    </table>
+    </center>
+           
+<script>
+    function do_ajax_vote(t,direction){
+        var id = jQuery(t).closest('tr').attr('data-id');
+        jQuery.ajax({method:'post',url:'{{=URL('vote_callback')}}',
+                     data:{'id':id,'direction':direction},
+                    success:function(data){
+            jQuery(t).closest('tr').find('.votes').html(data);
+        }});
+    
+          }
+    jQuery(function(){
+        jQuery('[data-direction=up').click(function(){do_ajax_vote(this,'up');});
+        jQuery('[data-direction=down').click(function(){do_ajax_vote(this,'down');});
+    });
+</script>
+    <div style="font-size:30px; color:black;">
+        <img src="/Amazing/static/images/arrow.jpg" width=30px;height:30px;/>
+            {{=(A("BACK",_href=URL("main#", args=db.image.id)))}}
+    </div>
+</body>
+</html>

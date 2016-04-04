@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+<style>
+    body{
+    background-image:url('/assgn_ans/static/images/b3.jpg');
+ height:100%;
+ width:100%;
+    }
+</style>
+<body>
+   
+</body>
+{{=BEAUTIFY(response._vars)}}

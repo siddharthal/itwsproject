@@ -1,0 +1,125 @@
+{{extend 'layout.html'}}
+<h2>
+<center><img src="/Amazing/static/images/head.jpg"/></center>
+</h2>
+    <br/>
+<body style="background-color:#f1f1c1;" >
+     
+<style>
+.button1 {
+    background-color:white; 
+    border: 1px solid black;
+    color: black;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+        float: left;
+
+}
+.ab{
+    color:black;
+    font-size:35px;    
+    display: block;
+        text-decoration: none;
+
+
+}
+    .abc{
+    color:black;
+    font-size:35px;
+        display: block;
+        float:right;
+            text-decoration: none;
+
+}
+
+.button1:hover {
+    background-color:grey;
+}
+    .button2 {
+    background-color:white; 
+    border: 1px solid black;
+    color: black;
+    padding: 5px 10px;
+    font-size:100px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+}
+
+.button2:hover {
+    background-color:grey;
+    color:black;
+}
+  h2 {
+      color:brown;      
+      width:1900px;
+      border-width:2px solid black;
+      border-radius:5px;
+      height:500px;
+      padding-top:30px;
+      padding-bottom:30px;
+      
+      text-align:left;
+  }
+th {
+    padding: 5px;
+    text-align:center;
+    font-size:25px;
+    color:white;
+    background-color:black;
+    
+}
+    td {
+    padding: 5px;
+    text-align:center;
+    font-size:25px;
+    color:black;
+}
+    tr:nth-child(even) {
+        background-color:#E0E0E0;
+    }
+    tr:nth-child(odd) {
+        background-color:white;
+    }
+    table {
+    background-color: white;
+        width:100%;
+        margin-top:50px;
+}
+</style>
+    <br/>
+    <table>
+        <tr>
+    <th >Title</th>
+    <th>Image</th>
+    <th>Description</th>
+  </tr>
+{{for image in rows:}}
+        <tr>
+
+        <td>{{=(A(image.title, _href=URL("show", args=image.id)))}}</td>
+    <td><img width="200px" ,border-radius="10px"
+             src="{{=URL('download', args=image.file)}}" /></td>
+        <td>{{=image.body}}</td>
+        </tr>
+    {{pass}}
+    </table>
+    <div class="abc">
+    {{if len(rows)>=10:}}
+        {{=A('NEXT====>',_href=URL(args=(page+1)))}}
+    {{pass}}
+    </div>
+    <div class="ab">
+    {{if page>0:}}
+        {{=A('<====PREVIOUS',_href=URL(args=(page-1)))}}
+    </div>
+        {{pass}}
+    
+</body>

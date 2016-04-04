@@ -1,0 +1,12 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'layout.html'}}
+<h1>
+    Recipes
+</h1>
+</br>
+<ul>
+    {{for page in pages:}}
+    {{=LI(A(page.title,_href=URL('show',args=page.id)))}}
+    {{pass}}
+</ul>
+[ {{=A('add recipe',_href=URL('create'))}} ]

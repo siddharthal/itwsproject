@@ -1,0 +1,4 @@
+{{extend 'layout.html'}}
+ <h1>{{=recipe.title}}</h1>
+ {{=MARKMIN(recipe.body)}}
+ {{=MARKMIN(recipe.summary)}}

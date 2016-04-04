@@ -1,0 +1,37 @@
+{{extend 'layout.html'}}
+<body style="background-color:#f1f1c1;">
+    
+    <h2>
+        <b>Edit Recipe</b>
+</h2>
+ <form action="http://127.0.0.1:8000/welcome/default/myrecipe">
+         <button class="button2">BACK</button>
+</form> 
+<style>
+    body{
+        background-image:url('/recipes/static/images/edit3.jpg');
+        background-repeat:no-repeat;
+        background-size:cover;
+    }
+.button1 {
+    background-color:lightblue; 
+    border: 1px solid green;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+}
+.button1:hover {
+    background-color:grey;
+}
+    h2{
+        color:brown;
+        text-align:center;
+    }
+    </style>
+</body>
+{{=BEAUTIFY(response._vars)}}

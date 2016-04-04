@@ -1,0 +1,82 @@
+{{extend 'layout.html'}}
+<style>
+    img{
+        float:left;
+        width:550px;
+        height:400px;
+        display:block;
+        margin-top:50px;
+    }
+.two {
+    padding: 5px;
+    border: 1px solid black;
+    background-repeat:no-repeat;
+    height:20px;
+    text-align:center;
+    font-size:25px;
+ margin-top:70px;
+    margin-left:450px;
+    color:black;
+}
+    .three{
+        margin-top:-20px;
+        margin-left:200px;
+    }
+ td{
+        margin-top:-20px;
+        margin-left:200px;
+    }
+    .four{
+        font-size:30px;
+    }
+    .one {
+    background-image:url('/recipes/static/images/1.jpg');
+        background-repeat:no-repeat;
+        background-size:cover;
+  height:20px;
+    border: 1px solid black;
+    padding: 1px solid black;
+    margin-left:600px;
+margin-top:150px;
+        
+        height:50%;
+    }
+</style>
+<img
+src="{{=URL('download', args=image.file)}}" />
+
+<table  class="one">
+<tr>
+    <th class="two">Title of  Recipe</th><th class="two">{{=image.title}}</th>
+</tr><tr><th class="two">
+    Author</th><th class="two">{{=image.author}}</th></tr>
+    <tr><th class="two">
+Date of upload</th><th class="two">{{=image.created_on}}
+        </th></tr><tr>
+<th class="two">
+Description</th><th class="two">{{=image.body}}
+    </th></tr>
+    
+</table>
+
+<center><table  class="three">
+    <tr data-id="{{=image.id}}">
+            <td><img src="/recipes/static/images/like.jpg" style="width:60px;height:60px;"/ data-direction="up">
+        </td><td class="four"><br><span class="votes">{{=image.votes}}</span></td><td><img src="/recipes/static/images/dislike.png" style="width:60px;height:60px;"/ data-direction="down">
+            </td></tr>
+</table></center>
+
+<script>
+    function do_ajax_vote(t,direction){
+        var id = jQuery(t).closest('tr').attr('data-id');
+        jQuery.ajax({method:'post',url:'{{=URL('vote_callback')}}',
+                     data:{'id':id,'direction':direction},
+                    success:function(data){
+            jQuery(t).closest('tr').find('.votes').html(data);
+        }});
+          }
+    jQuery(function(){
+        jQuery('[data-direction=up').click(function(){do_ajax_vote(this,'up');});
+        jQuery('[data-direction=down').click(function(){do_ajax_vote(this,'down');});
+    });
+</script>

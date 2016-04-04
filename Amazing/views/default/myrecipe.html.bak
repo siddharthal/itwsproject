@@ -1,0 +1,104 @@
+{{extend 'layout.html'}}
+<h2>
+    <center><img src="/Amazing/static/images/head.jpg"</center>
+</h2>
+<body style="background-color:#f1f1c1;">
+     <form action="main">
+         <button class="button2">ALL RECIPES</button>
+</form> 
+<style>
+.button2 {
+    background-color:lightgreen; 
+    border: 1px solid green;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+}
+
+.button2:hover {
+    background-color:grey;
+}
+.ab{
+    color:black;
+    font-size:35px;
+}
+    .abc{
+    color:black;
+    font-size:35px;
+    float:right;
+}
+
+     h2 {
+      color:brown;      
+      width:1900px;
+
+      height:500px;
+      padding-top:30px;
+      padding-bottom:30px;
+      
+      text-align:left;
+  }
+th {
+    padding: 5px;
+    text-align:center;
+    font-size:25px;
+    color:white;
+    background-color:black;
+}
+    td {
+    padding: 5px;
+    text-align:center;
+    font-size:25px;
+    color:green
+}
+     tr:nth-child(even) {
+        background-color:#E0E0E0;
+    }
+    tr:nth-child(odd) {
+        background-color:white;
+    }
+    table {
+        background-color: white;
+        margin-top:75px;
+        border-radius: 15px;
+        border-collapse:separate; 
+        border-spacing: 0;
+    }
+</style>
+    <table style="width:100%">
+        <tr>
+    <th>Title</th>
+    <th>Image</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+{{for image in rows:}}
+        <tr>
+         
+        <td>{{=(A(image.title, _href=URL("show", args=image.id)))}}</td>
+    <td><img width="200px"
+             src="{{=URL('download', args=image.file)}}" /></td>
+        <td>{{=(A('Edit_recipe', _href=URL("editrecipes", args=image.id)))}}</td>
+            <td>{{=(A('Delete_recipe', _href=URL("delete", args=image.id)))}}</td>
+        </tr>
+    {{pass}}
+        
+    </table>
+    <div class="abc">
+    {{if len(rows)>=3:}}
+    
+        {{=A('NEXT===>',_href=URL(args=(page+1)))}}
+    {{pass}}
+    </div>
+    <div class="ab">
+    {{if page>0:}}
+        {{=A('<===PREVIOUS',_href=URL(args=(page-1)))}}
+    </div>
+        {{pass}}
+    
+</body>

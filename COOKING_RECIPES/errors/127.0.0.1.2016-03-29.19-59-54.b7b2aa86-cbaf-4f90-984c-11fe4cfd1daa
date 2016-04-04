@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.AttributeError'> 'NoneType' object has no attribute 'first_name'"
+p3
+sS'layer'
+p4
+S'/home/burri/Downloads/web2py/applications/COOKING_RECIPES/controllers/default.py'
+p5
+sS'code'
+p6
+S'postperpage=10\ndef main():\n    page=request.args(0,cast=int,default=0)\n    start=page*postperpage\n    stop=start+postperpage\n    rows = db().select(db.image.ALL,orderby=~db.image.created_on,limitby=(start,stop))\n    return locals()\n    \n\ndef index():\n    return dict()\n    \ndef user():\n    return dict(form=auth())\n@auth.requires_login()\ndef create_post():\n    form = SQLFORM(db.image)\n    if form.process().accepted:\n        redirect(URL(\'main\',vars=dict(id=form.vars.id)))\n    return dict(form=form)\n\n@cache.action()\ndef download():\n    return response.download(request, db)\n\ndef manage():\n    grid = SQLFORM.grid(db.image)\n    return locals()\ndef func():\n    a = auth.user.first_name\n    b = auth.user.last_name\n    return locals()\ndef call():\n    return service()\ndef show():\n        image = db.image(request.args(0,cast=int)) or redirect(URL(\'index\'))\n        return dict(image=image)\n@auth.requires_login()\ndef myrecipe():\n    response.view=\'default/myrecipe.html\'\n    page=request.args(0,cast=int,default=0)\n    start=page*postperpage\n    stop=start+postperpage\n    rows = db(db.image.imageid==auth.user_id).select(db.image.ALL,orderby=~db.image.created_on,limitby=(start,stop))\n    return locals()\n\ndef editrecipes():\n    id=request.args(0,cast=int)\n    form=SQLFORM(db.image,id,showid=False,upload=URL(\'download\'))\n    if form.process().accepted:\n        redirect(URL(\'myrecipe\',vars=dict(id=form.vars.id)))\n    return dict(form=form)\n\ndef vote_callback():\n    vars=request.post_vars\n    if vars and auth.user:\n        id=vars.id\n        direction1=+1 if vars.direction=="up" else -1\n        image=db.image(id)\n        if image:\n            vote=db.vote(image_id=id,posted_by=auth.user.id)\n            if not vote:\n                image.update_record(votes=int(image.votes)+direction1)\n                db.vote.insert(image_id=id,score=direction1,posted_by=auth.user.id)\n            elif vote.score!=direction1:\n                image.update_record(votes=int(image.votes)+direction1*2)\n                vote.update_record(score=direction1)\n            else:\n                pass\n        print image.votes\n    return str(image.votes)\ndef delete():\n    iddelete=request.args(0)\n    query = db(db.image.id==request.args(0)).select().first()  \n    remove = db(db.image.id==query).delete()\n    if remove:\n        redirect(URL(\'myrecipe\'))\n    return dict(remove=remove)\n\nresponse._vars=response._caller(func)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/burri/Downloads/web2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/home/burri/Downloads/web2py/applications/COOKING_RECIPES/controllers/default.py", line 80, in <module>\n  File "/home/burri/Downloads/web2py/gluon/globals.py", line 412, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/burri/Downloads/web2py/applications/COOKING_RECIPES/controllers/default.py", line 30, in func\n    a = auth.user.first_name\nAttributeError: \'NoneType\' object has no attribute \'first_name\'\n'
+p11
+s.

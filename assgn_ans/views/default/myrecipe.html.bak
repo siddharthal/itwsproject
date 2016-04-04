@@ -1,0 +1,105 @@
+{{extend 'layout.html'}}
+<body>
+<style>
+    body{
+    background-image:url('/assgn_ans/static/images/b2.jpg');
+ height:100%;
+ width:100%;
+    }
+    h2{
+        color:blue;
+    }
+</style>
+
+<h2>
+    My Recipes
+</h2>
+
+<style>
+
+.ab{
+    color:black;
+    font-size:20px;
+    float:left;
+}
+    .abc{
+    color:black;
+    font-size:20px;
+    float:right;
+}
+
+  h2 {
+      color:brown;
+      text-align:center;
+  }  
+    
+    .c4{
+    padding: 5px;
+    text-align:center;
+    font-size:25px;
+    color:green
+} img {
+        height:250px;
+        width:250px;
+        text-align:left;
+        float:left;
+    }
+    .c3{
+        height:250px;
+        width:250px;
+        
+    }
+   table{
+       width:100%;
+   }
+  
+    .c1{
+        padding:2px;
+        text-align:center;
+        font-size:40px;
+        color:blue;
+    }
+    .c2{
+        margin:3px;
+        padding:2px;
+        text-align:center;
+        font-size:25px;
+        color:black;
+    }
+    
+</style>
+    
+{{for image in rows:}}
+    <br>
+<table>
+    <tr>
+         <td class="c3" rowspan='3'><img 
+             src="{{=URL('download', args=image.file)}}" /></td>
+        <td class="c1">{{=(A(image.title, _href=URL("show", args=image.id)))}}</td>
+    
+        
+        
+   </tr>
+    <tr>
+        <td class="c2">{{=image.body}}</td>
+    </tr>
+    <tr>
+        <td class="c4">{{=(A('Edit_recipe', _href=URL("editrecipes", args=image.id)))}}</td>
+    </tr>
+    </table>
+    <br><br>
+    {{pass}}
+        
+ 
+    <div class="ab">
+    {{if page>0:}}
+        {{=A('PREVIOUS',_href=URL(args=(page-1)))}}
+    </div>
+        {{pass}}
+    <div class="abc">
+    {{if len(rows)>=3:}}
+    
+        {{=A('NEXT',_href=URL(args=(page+1)))}}
+    {{pass}}
+    </div>
+</body>

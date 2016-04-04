@@ -1,0 +1,18 @@
+{{extend 'layout.html'}}
+<body style="background-image: url(/Amazing/static/images/mimg.jpg);background-repeat:no-repeat;">
+    <form action="user">
+        <div class="button2"><button><span style="font-size:30px; text-align:center; padding-top:10px;">LOGIN</span></button></div>
+</form> 
+    <br/>
+     <form action="user/register">
+        <div class="button2"><button><span style="font-size:30px; text-align:center; padding-top:10px;">SIGNUP</span></button></div>
+</form> 
+    
+</body>
+<style>
+    .button2{
+        padding-left:1700px;
+        
+    }
+</style>
+{{=BEAUTIFY(response._vars)}}

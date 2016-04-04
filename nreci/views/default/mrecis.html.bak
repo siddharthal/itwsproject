@@ -1,0 +1,9 @@
+{{extend 'layout.html'}}
+ <h1>The recipes!!</h1>
+ <ul>{{for recipe in recipes:}}
+ {{=LI(A(recipe.title, _href=URL('show', args=recipe.id)))}} 
+     {{=LI(recipe.title)}}
+     {{=LI(recipe.image)}}
+     {{pass}}</ul>
+  {{=A('add recipe', _href=URL('create'))}}
+  {{=A('my recipes', _href=URL('mrecis'))}}

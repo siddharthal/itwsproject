@@ -1,0 +1,38 @@
+{{extend 'layout.html'}}
+<body style="background-image:url(/Amazing/static/images/edit1.jpg);background-repeat:no-repeat;">
+    <h2>
+    Edit Recipe
+</h2>
+    <div style="font-size:30px; color:black;">
+        <img src="/Amazing/static/images/arrow.jpg" width=30px;height:30px;/>
+            {{=(A("BACK",_href=URL("myrecipe?", args=db.image.id)))}}
+    </div>
+<style>
+.button1 {
+    background-color:lightblue;
+    border: 1px solid green;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+}
+.button1:hover {
+    background-color:grey;
+}
+    h2{
+        color:white;
+        text-align:center;
+        padding-top:20px;
+        padding-bottom:20px;
+        font-size:50px;
+        background-color:rgb(56,0,0);
+        border-radius:8px;
+        height:100px;
+    }
+    </style>
+</body>
+{{=BEAUTIFY(response._vars)}}

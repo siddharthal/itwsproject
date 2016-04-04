@@ -1,0 +1,15 @@
+<h1>The recipes!!</h1>
+<table>
+{{for recipe in recipes:}}
+    <tr>
+     {{=TD(A(recipe.title, _href=URL('show', args=recipe.id)))}}
+     {{=TD(recipe.summary)}}
+     <td><img  src="{{=URL('download', args=recipe.image)}}" alt="image"/></td>
+     
+    </tr>
+    
+     {{pass}}
+</table>
+  {{=A('add recipe', _href=URL('create'))}}
+<br>
+  {{=A('my recipes', _href=URL('mrecis'))}}
